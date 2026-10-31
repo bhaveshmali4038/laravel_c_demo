@@ -1,0 +1,11 @@
+# Protect Laravel source when this project lives under XAMPP's htdocs.
+# The preferred web-server document root remains the public/ directory.
+Options -Indexes
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^$ public/ [R=302,L]
+    RewriteRule !^public(?:/|$) - [F,L]
+</IfModule>
